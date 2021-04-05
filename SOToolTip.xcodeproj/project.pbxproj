@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		450D60B2261B93E2006D06B3 /* CustomToolTipWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D60B1261B93E2006D06B3 /* CustomToolTipWindow.swift */; };
+		45616E6F26191E0900BC30FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E6E26191E0900BC30FA /* AppDelegate.swift */; };
+		45616E7126191E0900BC30FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E7026191E0900BC30FA /* ViewController.swift */; };
+		45616E7326191E1500BC30FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45616E7226191E1500BC30FA /* Assets.xcassets */; };
+		45616E7626191E1500BC30FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45616E7426191E1500BC30FA /* Main.storyboard */; };
+		45616E8226191E1600BC30FA /* SOToolTipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E8126191E1600BC30FA /* SOToolTipTests.swift */; };
+		45616E8D26191E1600BC30FA /* SOToolTipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E8C26191E1600BC30FA /* SOToolTipUITests.swift */; };
+		45616E9E26191EE500BC30FA /* NSView+CustomToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E9D26191EE500BC30FA /* NSView+CustomToolTip.swift */; };
+		45616EA4261969EB00BC30FA /* swizzleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45616EA3261969EB00BC30FA /* swizzleHelper.m */; };
+		45616EAD261985F700BC30FA /* NSObject+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616EAC261985F700BC30FA /* NSObject+Swizzling.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45616E7E26191E1600BC30FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45616E6326191E0900BC30FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45616E6A26191E0900BC30FA;
+			remoteInfo = SOToolTip;
+		};
+		45616E8926191E1600BC30FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45616E6326191E0900BC30FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45616E6A26191E0900BC30FA;
+			remoteInfo = SOToolTip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		450D60B1261B93E2006D06B3 /* CustomToolTipWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolTipWindow.swift; sourceTree = "<group>"; };
+		45616E6B26191E0900BC30FA /* SOToolTip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOToolTip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		45616E6E26191E0900BC30FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		45616E7026191E0900BC30FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		45616E7226191E1500BC30FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		45616E7526191E1500BC30FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		45616E7726191E1500BC30FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45616E7826191E1500BC30FA /* SOToolTip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SOToolTip.entitlements; sourceTree = "<group>"; };
+		45616E7D26191E1600BC30FA /* SOToolTipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOToolTipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45616E8126191E1600BC30FA /* SOToolTipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOToolTipTests.swift; sourceTree = "<group>"; };
+		45616E8326191E1600BC30FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45616E8826191E1600BC30FA /* SOToolTipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOToolTipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45616E8C26191E1600BC30FA /* SOToolTipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOToolTipUITests.swift; sourceTree = "<group>"; };
+		45616E8E26191E1600BC30FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45616E9D26191EE500BC30FA /* NSView+CustomToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+CustomToolTip.swift"; sourceTree = "<group>"; };
+		45616EA2261969EA00BC30FA /* SOToolTip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SOToolTip-Bridging-Header.h"; sourceTree = "<group>"; };
+		45616EA3261969EB00BC30FA /* swizzleHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = swizzleHelper.m; sourceTree = "<group>"; };
+		45616EA826196A0300BC30FA /* swizzleHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swizzleHelper.h; sourceTree = "<group>"; };
+		45616EAC261985F700BC30FA /* NSObject+Swizzling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Swizzling.swift"; sourceTree = "<group>"; };
+		45616EB7261AAB3900BC30FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		45616E6826191E0900BC30FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45616E7A26191E1600BC30FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45616E8526191E1600BC30FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		45616E6226191E0900BC30FA = {
+			isa = PBXGroup;
+			children = (
+				45616EB7261AAB3900BC30FA /* README.md */,
+				45616E6D26191E0900BC30FA /* SOToolTip */,
+				45616E8026191E1600BC30FA /* SOToolTipTests */,
+				45616E8B26191E1600BC30FA /* SOToolTipUITests */,
+				45616E6C26191E0900BC30FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		45616E6C26191E0900BC30FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45616E6B26191E0900BC30FA /* SOToolTip.app */,
+				45616E7D26191E1600BC30FA /* SOToolTipTests.xctest */,
+				45616E8826191E1600BC30FA /* SOToolTipUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45616E6D26191E0900BC30FA /* SOToolTip */ = {
+			isa = PBXGroup;
+			children = (
+				45616E6E26191E0900BC30FA /* AppDelegate.swift */,
+				45616E7026191E0900BC30FA /* ViewController.swift */,
+				45616E7226191E1500BC30FA /* Assets.xcassets */,
+				45616E7426191E1500BC30FA /* Main.storyboard */,
+				45616E7726191E1500BC30FA /* Info.plist */,
+				45616E7826191E1500BC30FA /* SOToolTip.entitlements */,
+				45616EA3261969EB00BC30FA /* swizzleHelper.m */,
+				45616EA826196A0300BC30FA /* swizzleHelper.h */,
+				45616EA2261969EA00BC30FA /* SOToolTip-Bridging-Header.h */,
+				45616E9D26191EE500BC30FA /* NSView+CustomToolTip.swift */,
+				45616EAC261985F700BC30FA /* NSObject+Swizzling.swift */,
+				450D60B1261B93E2006D06B3 /* CustomToolTipWindow.swift */,
+			);
+			path = SOToolTip;
+			sourceTree = "<group>";
+		};
+		45616E8026191E1600BC30FA /* SOToolTipTests */ = {
+			isa = PBXGroup;
+			children = (
+				45616E8126191E1600BC30FA /* SOToolTipTests.swift */,
+				45616E8326191E1600BC30FA /* Info.plist */,
+			);
+			path = SOToolTipTests;
+			sourceTree = "<group>";
+		};
+		45616E8B26191E1600BC30FA /* SOToolTipUITests */ = {
+			isa = PBXGroup;
+			children = (
+				45616E8C26191E1600BC30FA /* SOToolTipUITests.swift */,
+				45616E8E26191E1600BC30FA /* Info.plist */,
+			);
+			path = SOToolTipUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		45616E6A26191E0900BC30FA /* SOToolTip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45616E9126191E1600BC30FA /* Build configuration list for PBXNativeTarget "SOToolTip" */;
+			buildPhases = (
+				45616E6726191E0900BC30FA /* Sources */,
+				45616E6826191E0900BC30FA /* Frameworks */,
+				45616E6926191E0900BC30FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SOToolTip;
+			productName = SOToolTip;
+			productReference = 45616E6B26191E0900BC30FA /* SOToolTip.app */;
+			productType = "com.apple.product-type.application";
+		};
+		45616E7C26191E1600BC30FA /* SOToolTipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45616E9426191E1600BC30FA /* Build configuration list for PBXNativeTarget "SOToolTipTests" */;
+			buildPhases = (
+				45616E7926191E1600BC30FA /* Sources */,
+				45616E7A26191E1600BC30FA /* Frameworks */,
+				45616E7B26191E1600BC30FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45616E7F26191E1600BC30FA /* PBXTargetDependency */,
+			);
+			name = SOToolTipTests;
+			productName = SOToolTipTests;
+			productReference = 45616E7D26191E1600BC30FA /* SOToolTipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		45616E8726191E1600BC30FA /* SOToolTipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45616E9726191E1600BC30FA /* Build configuration list for PBXNativeTarget "SOToolTipUITests" */;
+			buildPhases = (
+				45616E8426191E1600BC30FA /* Sources */,
+				45616E8526191E1600BC30FA /* Frameworks */,
+				45616E8626191E1600BC30FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45616E8A26191E1600BC30FA /* PBXTargetDependency */,
+			);
+			name = SOToolTipUITests;
+			productName = SOToolTipUITests;
+			productReference = 45616E8826191E1600BC30FA /* SOToolTipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		45616E6326191E0900BC30FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					45616E6A26191E0900BC30FA = {
+						CreatedOnToolsVersion = 12.1;
+						LastSwiftMigration = 1210;
+					};
+					45616E7C26191E1600BC30FA = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = 45616E6A26191E0900BC30FA;
+					};
+					45616E8726191E1600BC30FA = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = 45616E6A26191E0900BC30FA;
+					};
+				};
+			};
+			buildConfigurationList = 45616E6626191E0900BC30FA /* Build configuration list for PBXProject "SOToolTip" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 45616E6226191E0900BC30FA;
+			productRefGroup = 45616E6C26191E0900BC30FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				45616E6A26191E0900BC30FA /* SOToolTip */,
+				45616E7C26191E1600BC30FA /* SOToolTipTests */,
+				45616E8726191E1600BC30FA /* SOToolTipUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		45616E6926191E0900BC30FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45616E7326191E1500BC30FA /* Assets.xcassets in Resources */,
+				45616E7626191E1500BC30FA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45616E7B26191E1600BC30FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45616E8626191E1600BC30FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		45616E6726191E0900BC30FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45616E7126191E0900BC30FA /* ViewController.swift in Sources */,
+				45616E6F26191E0900BC30FA /* AppDelegate.swift in Sources */,
+				450D60B2261B93E2006D06B3 /* CustomToolTipWindow.swift in Sources */,
+				45616EAD261985F700BC30FA /* NSObject+Swizzling.swift in Sources */,
+				45616EA4261969EB00BC30FA /* swizzleHelper.m in Sources */,
+				45616E9E26191EE500BC30FA /* NSView+CustomToolTip.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45616E7926191E1600BC30FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45616E8226191E1600BC30FA /* SOToolTipTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45616E8426191E1600BC30FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45616E8D26191E1600BC30FA /* SOToolTipUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45616E7F26191E1600BC30FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45616E6A26191E0900BC30FA /* SOToolTip */;
+			targetProxy = 45616E7E26191E1600BC30FA /* PBXContainerItemProxy */;
+		};
+		45616E8A26191E1600BC30FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45616E6A26191E0900BC30FA /* SOToolTip */;
+			targetProxy = 45616E8926191E1600BC30FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		45616E7426191E1500BC30FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45616E7526191E1500BC30FA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		45616E8F26191E1600BC30FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		45616E9026191E1600BC30FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		45616E9226191E1600BC30FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SOToolTip/SOToolTip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B6QFK6MJHL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SOToolTip/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SOToolTip/SOToolTip-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		45616E9326191E1600BC30FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SOToolTip/SOToolTip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B6QFK6MJHL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SOToolTip/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SOToolTip/SOToolTip-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		45616E9526191E1600BC30FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B6QFK6MJHL;
+				INFOPLIST_FILE = SOToolTipTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SOToolTip.app/Contents/MacOS/SOToolTip";
+			};
+			name = Debug;
+		};
+		45616E9626191E1600BC30FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B6QFK6MJHL;
+				INFOPLIST_FILE = SOToolTipTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SOToolTip.app/Contents/MacOS/SOToolTip";
+			};
+			name = Release;
+		};
+		45616E9826191E1600BC30FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B6QFK6MJHL;
+				INFOPLIST_FILE = SOToolTipUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SOToolTip;
+			};
+			name = Debug;
+		};
+		45616E9926191E1600BC30FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B6QFK6MJHL;
+				INFOPLIST_FILE = SOToolTipUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SOToolTip;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		45616E6626191E0900BC30FA /* Build configuration list for PBXProject "SOToolTip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45616E8F26191E1600BC30FA /* Debug */,
+				45616E9026191E1600BC30FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45616E9126191E1600BC30FA /* Build configuration list for PBXNativeTarget "SOToolTip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45616E9226191E1600BC30FA /* Debug */,
+				45616E9326191E1600BC30FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45616E9426191E1600BC30FA /* Build configuration list for PBXNativeTarget "SOToolTipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45616E9526191E1600BC30FA /* Debug */,
+				45616E9626191E1600BC30FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45616E9726191E1600BC30FA /* Build configuration list for PBXNativeTarget "SOToolTipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45616E9826191E1600BC30FA /* Debug */,
+				45616E9926191E1600BC30FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 45616E6326191E0900BC30FA /* Project object */;
+}
