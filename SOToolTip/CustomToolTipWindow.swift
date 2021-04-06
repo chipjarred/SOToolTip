@@ -47,7 +47,7 @@ class CustomToolTipWindow: NSWindow
      
      If the current layout direction is left-to-right, the preferred location is
      below and shifted to the right relative to the owner.  If the layout
-     direction is right-to-left, the preferred location is below and shift to
+     direction is right-to-left, the preferred location is below and shifted to
      the left relative to the owner.
      
      The preferred location is overridden when any part of the tool tip would be

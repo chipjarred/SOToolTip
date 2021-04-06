@@ -1,6 +1,6 @@
 # macOS ToolTips with Any View for Content
 
-This repo is basically my answer to [this stackoverflow question](https://stackoverflow.com/q/66932781/15280114) about how to implement tool tips with style text or even arbitrary content on macOS.  When I started to answer,  I realized that the result would be something I might want to use myself, so it ended up being a much bigger thing that I originally intended... and much bigger than SO allows for their answers.  I had to trim it down quite a lot in order to post it, and therefore had omit a lot of key details.  So what follows is my full original version of the answer.  Of course, this repo has all of the source code ready to compile.
+This repo is basically my answer to [this stackoverflow question](https://stackoverflow.com/q/66932781/15280114) about how to implement tool tips with styled text or even arbitrary content on macOS.  When I started to answer,  I realized that the result would be something I might want to use myself, so it ended up being a much bigger thing that I originally intended... and much bigger than SO allows for their answers.  I had to trim it down quite a lot in order to post it, and therefore had omit a lot of key details.  So what follows is my full original version of the answer.  Of course, this repo has all of the source code ready to compile.
 
 ## My Original Stack Overflow Answer
 
@@ -159,7 +159,7 @@ class CustomToolTipWindow: NSWindow
 }
 ```
 
-The tool tip window is the easy part.   This implementation positions the window relative to its owner (the view to which the tool tip is attached) while also avoiding drawing offscreen.  I don't handle the pathalogical case where the tool tip is so large that it can't fit onto screen without obscuring the thing it's a tool tip for.  Nor do I handle the case where the thing you're attaching the tool tip to is so large that even though the tool tip itself is a reasoble size, it can't go outside of the area occupied by the view to which it's attached.  That case shouldn't be too hard to handle.  I just didn't do it.  I do handle responding to the currently set layout direction.
+The tool tip window is the easy part.   This implementation positions the window relative to its owner (the view to which the tool tip is attached) while also avoiding drawing offscreen.  I don't handle the pathalogical case where the tool tip is so large that it can't fit onto screen without obscuring the thing it's a tool tip for.  Nor do I handle the case where the thing you're attaching the tool tip to is so large that even though the tool tip itself is a reasonable size, it can't go outside of the area occupied by the view to which it's attached.  That case shouldn't be too hard to handle.  I just didn't do it.  I do handle responding to the currently set layout direction.
 
 If you want to incorporate it into another solution, the code to show the tool tip is
 
@@ -180,7 +180,7 @@ or just set the last reference you keep to it to `nil`.
 I think that gives you everything you need to incorporate it into another solution if you like.
 
 
-#### Tool Tip handling code
+### Tool Tip handling code
 
 As a small convenience, I use this extension on `NSTrackingArea`
 
@@ -318,10 +318,10 @@ fileprivate let dispatchQueue = DispatchQueue(
 )
 ```
 
-#### NSView extension
+### NSView extension
 My `NSView` extension has a lot in it, the vast majority of which is `private`, including swizzled methods, so I'll break it into pieces
 
-In order to be able to attach custom tool tip as easily as you do for a standard tool tip, I provide a computed property.  In addition to actually setting the tool tip view, it also checks to see if the `Self` (that is the particular subclass of `NSView`) has already been swizzled, and does that if it hasn't been, and it's adds the mouse tracking area.
+In order to be able to attach a custom tool tip as easily as you do for a standard tool tip, I provide a computed property.  In addition to actually setting the tool tip view, it also checks to see if the `Self` (that is the particular subclass of `NSView`) has already been swizzled, and does that if it hasn't been, and it's adds the mouse tracking area.
 
 ```swift
 // -------------------------------------
