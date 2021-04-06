@@ -2,6 +2,23 @@
 
 This repo is basically my answer to [this stackoverflow question](https://stackoverflow.com/q/66932781/15280114) about how to implement tool tips with styled text or even arbitrary content on macOS.  When I started to answer,  I realized that the result would be something I might want to use myself, so it ended up being a much bigger thing that I originally intended... and much bigger than SO allows for their answers.  I had to trim it down quite a lot in order to post it, and therefore had omit a lot of key details.  So what follows is my full original version of the answer.  Of course, this repo has all of the source code ready to compile.
 
+To build it and see tool tip work, clone this repo from the command line:
+
+```bash
+git clone https://github.com/chipjarred/SOToolTip.git
+```
+
+Then open the  `SoToolTip` Xcode project.
+
+That version has all the source code directly in the project.
+
+I've also extracted the code into a Swift package: [https://github.com/chipjarred/CustomToolTip.git](https://github.com/chipjarred/CustomToolTip.git).  
+
+To build a verson of this repo that uses the `CustomToolTip` package 
+```bash
+git checkout UsePackage
+```
+
 ## My Original Stack Overflow Answer
 
 Stephan's answer prompted me to do my own implementation of tool tips.   My solution produces tool tips that look like the standard tool tips, except you can put any view you like inside them, so not just styled text, but images... you could even use a WebKit view, if you wanted to. 
