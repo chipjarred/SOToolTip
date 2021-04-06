@@ -26,7 +26,7 @@ class ViewController: NSViewController
     func makeCustomToolTip() -> NSView
     {
         let titleText = "Custom Tool Tip"
-        let bodyText = "\n\tThis demonstrates that its possible,\n\tand if I can do it, so you can you"
+        let bodyText = "\n\tThis demonstrates that it's possible,\n\tand if I can do it, so you can you!"
         
         let titleFont = NSFont.systemFont(ofSize: 14, weight: .bold)
         let title = NSAttributedString(
