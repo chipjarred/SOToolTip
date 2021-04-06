@@ -3,20 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		450D60B2261B93E2006D06B3 /* CustomToolTipWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450D60B1261B93E2006D06B3 /* CustomToolTipWindow.swift */; };
+		45448503261C9FF5001CE49F /* CustomToolTip in Frameworks */ = {isa = PBXBuildFile; productRef = 45448502261C9FF5001CE49F /* CustomToolTip */; };
 		45616E6F26191E0900BC30FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E6E26191E0900BC30FA /* AppDelegate.swift */; };
 		45616E7126191E0900BC30FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E7026191E0900BC30FA /* ViewController.swift */; };
 		45616E7326191E1500BC30FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45616E7226191E1500BC30FA /* Assets.xcassets */; };
 		45616E7626191E1500BC30FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45616E7426191E1500BC30FA /* Main.storyboard */; };
 		45616E8226191E1600BC30FA /* SOToolTipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E8126191E1600BC30FA /* SOToolTipTests.swift */; };
 		45616E8D26191E1600BC30FA /* SOToolTipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E8C26191E1600BC30FA /* SOToolTipUITests.swift */; };
-		45616E9E26191EE500BC30FA /* NSView+CustomToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616E9D26191EE500BC30FA /* NSView+CustomToolTip.swift */; };
-		45616EA4261969EB00BC30FA /* swizzleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45616EA3261969EB00BC30FA /* swizzleHelper.m */; };
-		45616EAD261985F700BC30FA /* NSObject+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45616EAC261985F700BC30FA /* NSObject+Swizzling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		450D60B1261B93E2006D06B3 /* CustomToolTipWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolTipWindow.swift; sourceTree = "<group>"; };
 		45616E6B26191E0900BC30FA /* SOToolTip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOToolTip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45616E6E26191E0900BC30FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45616E7026191E0900BC30FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,11 +47,6 @@
 		45616E8826191E1600BC30FA /* SOToolTipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SOToolTipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45616E8C26191E1600BC30FA /* SOToolTipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOToolTipUITests.swift; sourceTree = "<group>"; };
 		45616E8E26191E1600BC30FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		45616E9D26191EE500BC30FA /* NSView+CustomToolTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+CustomToolTip.swift"; sourceTree = "<group>"; };
-		45616EA2261969EA00BC30FA /* SOToolTip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SOToolTip-Bridging-Header.h"; sourceTree = "<group>"; };
-		45616EA3261969EB00BC30FA /* swizzleHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = swizzleHelper.m; sourceTree = "<group>"; };
-		45616EA826196A0300BC30FA /* swizzleHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swizzleHelper.h; sourceTree = "<group>"; };
-		45616EAC261985F700BC30FA /* NSObject+Swizzling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Swizzling.swift"; sourceTree = "<group>"; };
 		45616EB7261AAB3900BC30FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45448503261C9FF5001CE49F /* CustomToolTip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,12 +106,6 @@
 				45616E7426191E1500BC30FA /* Main.storyboard */,
 				45616E7726191E1500BC30FA /* Info.plist */,
 				45616E7826191E1500BC30FA /* SOToolTip.entitlements */,
-				45616EA3261969EB00BC30FA /* swizzleHelper.m */,
-				45616EA826196A0300BC30FA /* swizzleHelper.h */,
-				45616EA2261969EA00BC30FA /* SOToolTip-Bridging-Header.h */,
-				45616E9D26191EE500BC30FA /* NSView+CustomToolTip.swift */,
-				45616EAC261985F700BC30FA /* NSObject+Swizzling.swift */,
-				450D60B1261B93E2006D06B3 /* CustomToolTipWindow.swift */,
 			);
 			path = SOToolTip;
 			sourceTree = "<group>";
@@ -158,6 +144,9 @@
 			dependencies = (
 			);
 			name = SOToolTip;
+			packageProductDependencies = (
+				45448502261C9FF5001CE49F /* CustomToolTip */,
+			);
 			productName = SOToolTip;
 			productReference = 45616E6B26191E0900BC30FA /* SOToolTip.app */;
 			productType = "com.apple.product-type.application";
@@ -230,6 +219,9 @@
 				Base,
 			);
 			mainGroup = 45616E6226191E0900BC30FA;
+			packageReferences = (
+				45448501261C9FF5001CE49F /* XCRemoteSwiftPackageReference "CustomToolTip" */,
+			);
 			productRefGroup = 45616E6C26191E0900BC30FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -274,10 +266,6 @@
 			files = (
 				45616E7126191E0900BC30FA /* ViewController.swift in Sources */,
 				45616E6F26191E0900BC30FA /* AppDelegate.swift in Sources */,
-				450D60B2261B93E2006D06B3 /* CustomToolTipWindow.swift in Sources */,
-				45616EAD261985F700BC30FA /* NSObject+Swizzling.swift in Sources */,
-				45616EA4261969EB00BC30FA /* swizzleHelper.m in Sources */,
-				45616E9E26191EE500BC30FA /* NSView+CustomToolTip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +445,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SOToolTip/SOToolTip-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -481,7 +469,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.skynet.SOToolTip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SOToolTip/SOToolTip-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -610,6 +598,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		45448501261C9FF5001CE49F /* XCRemoteSwiftPackageReference "CustomToolTip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chipjarred/CustomToolTip.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		45448502261C9FF5001CE49F /* CustomToolTip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45448501261C9FF5001CE49F /* XCRemoteSwiftPackageReference "CustomToolTip" */;
+			productName = CustomToolTip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 45616E6326191E0900BC30FA /* Project object */;
 }
