@@ -1023,7 +1023,7 @@ BOOL addMethodThatCallsSuper(
 
 That's all of the Objective-C.  I wanted to do it 100% in Swift, but since that wasn't possible, I think that's an acceptably minimal amount of Objective-C.
 
-That puts everything in place, so now you just have to use it.  I was just using Xcode's default Cocoa App template, so it uses a Storyboard (which normally I prefer not to).  I just added an ordinary `NSButton` in the Storyboard.  That means I don't start with a reference to it anywhere in the source code, so in `ViewController`, for the sake of building an example I just do a quick recursive search through the view heirchy looking for an `NSButton`. 
+That puts everything in place, so now you just have to use it.  I was just using Xcode's default Cocoa App template, so it uses a Storyboard (which normally I prefer not to).  I just added an ordinary `NSButton` in the Storyboard.  That means I don't start with a reference to it anywhere in the source code, so in `ViewController`, for the sake of building an example I just do a quick recursive search through the view hierarchy looking for an `NSButton`. 
 
 ```swift
 func findPushButton(in view: NSView) -> NSButton?
