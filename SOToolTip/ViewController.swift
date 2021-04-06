@@ -53,18 +53,15 @@ class ViewController: NSViewController
             frame: CGRect(
                 origin: .zero,
                 size: CGSize(
-                    width: imageView.frame.width + label.frame.width + 15,
-                    height: imageView.frame.height + 10
+                    width: imageView.frame.width + label.frame.width + 5,
+                    height: imageView.frame.height
                 )
             )
         )
         
-        imageView.frame.origin.x += 5
-        imageView.frame.origin.y += 5
         toolTipView.addSubview(imageView)
         
         label.frame.origin.x += imageView.frame.maxX + 5
-        label.frame.origin.y += 5
         toolTipView.addSubview(label)
         
         return toolTipView
