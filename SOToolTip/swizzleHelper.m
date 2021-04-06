@@ -10,7 +10,8 @@
  The same is true for forwardToSuperFromSwizzle, but it had the additional
  problem that when making the objc_super structure, the Swift *compiler* would
  crash trying to assign its `receiver` member field, which translates to Swift
- as an Unmanaged<Any!>.  That seems to have been a problem in a @_cdecl context.
+ as an Unmanaged<AnyObject>.  That seems to have been a problem in a @_cdecl
+ context.
 
  In addition the call to objc_msgSendSuper in forwardToSuperFromSwizzle can't
  be done at all in Swift, because it's simply not available... at all.  The

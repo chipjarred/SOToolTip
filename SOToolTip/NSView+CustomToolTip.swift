@@ -180,7 +180,7 @@ extension NSView
     // MARK:- Showing and Hiding Tool Tip
     // -------------------------------------
     /**
-     Controls how amy seconds the mouse must be motionless within the tracking
+     Controls how many seconds the mouse must be motionless within the tracking
      area in order to show the tool tip.
      */
     private var customToolTipDelay: TimeInterval { 1 /* seconds */ }

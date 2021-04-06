@@ -1,6 +1,6 @@
 # macOS ToolTips with Any View for Content
 
-This repo is basically my answer to [this stackoverflow question](https://stackoverflow.com/q/66932781/15280114) about how to implement tool tips with style text or even arbitrary content on macOS.  When I started to answer,  realized that the result would be something I might want to use myself, so it ended up being a much bigger thing that I originally intended... and much bigger than SO allows for their answers.  So I had to trim it down quite a lot, and therefore omit a lot of key details.  So what follows is my full original version of the answer... of course, this repo has all of the source code ready to compile.
+This repo is basically my answer to [this stackoverflow question](https://stackoverflow.com/q/66932781/15280114) about how to implement tool tips with style text or even arbitrary content on macOS.  When I started to answer,  I realized that the result would be something I might want to use myself, so it ended up being a much bigger thing that I originally intended... and much bigger than SO allows for their answers.  I had to trim it down quite a lot in order to post it, and therefore had omit a lot of key details.  So what follows is my full original version of the answer.  Of course, this repo has all of the source code ready to compile.
 
 ## My Original Stack Overflow Answer
 
@@ -10,10 +10,10 @@ Stephan's answer prompted me to do my own implementation of tool tips.   My solu
 
 Obviously it doesn't make sense to put some kinds of views in it.  Anything that only makes sense with user interaction would be meaningless since the tool tip would disappear as soon as they move the mouse cursor to interact with it... though that would be good April Fools joke.
 
-Before I get to my solution, I want to mention that there is another way to make Stephan's solution a little easier to use, which is to use the "decorator" pattern by subclassing `NSView` to wrap another view.  Your wrapper is the part that hooks into to the tool tips, and handles the tracking areas.  Just make sure you forward those calls to the wrapped view too, in case it also has tracking areas (perhaps it changes the cursor or something, like `NSTextView` does.)  Using a decorator means you don't subclass every view... just put the view you want to add a tool tip inside of a `ToolTippableView` or whatever you decide to call it.  I don't think you'll need to override all `NSView` methods as long as you wrap the view by adding it to your `subviews`.   The view heirarchy and responder chain should take care of dispatching the events and messages you're not interested in to the subview.  You should only need to forward the ones you handle for the tool tips (`mouseEntered`, `mouseExited`, etc...)
+Before I get to my solution, I want to mention that there is another way to make Stephan's solution a little easier to use, which is to use the "decorator" pattern by subclassing `NSView` to wrap another view.  Your wrapper is the part that hooks into to the tool tips, and handles the tracking areas.  Just make sure you forward those calls to the wrapped view too, in case it also has tracking areas (perhaps it changes the cursor or something, like `NSTextView` does.)  Using a decorator means you don't subclass every view... just put the view you want to add a tool tip for inside of a `ToolTippableView` or whatever you decide to call it.  I don't think you'll need to override all `NSView` methods as long as you wrap the view by adding it to your `subviews`.   The view heirarchy and responder chain should take care of dispatching the events and messages you're not interested in to the subview.  You should only need to forward the ones you handle for the tool tips (`mouseEntered`, `mouseExited`, etc...)
 
 
-### My solution
+## My solution
 However, I went to an evil extreme... and spent way more time on it than I probably should have, but it seemed like something I might want to use at some point.  I swizzled ("monkey patched") `NSVIew` methods to handle custom tool tips, which combined with an extension on `NSView` means I don't have subclass anything to add custom tool tips, I can just write:
 
 ```swift
@@ -23,7 +23,7 @@ myView.customToolTip = myCustomToolTipContent
 where `myCustomToolTipContent` is whatever  `NSView` I want to display in the tool tip.
 
 
-#### The Tool Tip itself
+### The Tool Tip itself
 The main thing is the tool tip itself.  It's just a window.  It sizes itself to whatever content you put in it, so make sure you've set your tip content's view `frame` to the size you want before setting `customToolTip`.  Here's the tool tip window code:
 
 ```swift
@@ -164,15 +164,15 @@ The tool tip window is the easy part.   This implementation positions the window
 If you want to incorporate it into another solution, the code to show the tool tip is
 
 ```swift
-let window = CustomToolTipWindow.makeAndShow(toolTipView: toolTipView, for: ownerView)
+let toolTipWindow = CustomToolTipWindow.makeAndShow(toolTipView: toolTipView, for: ownerView)
 ```
 
-where `toolTipView` is the view to be displayed in the tool tip.  `ownerView` is the view to which you're attaching the tool tip.  You'll need to store `window` somehere (and probably call it something else), for example in Stephan's `ToolTipHandler`.
+where `toolTipView` is the view to be displayed in the tool tip.  `ownerView` is the view to which you're attaching the tool tip.  You'll need to store `toolTipWindow` somehere, for example in Stephan's `ToolTipHandler`.
 
 To hide the tool tip:
 
 ```swift
-window.orderOut(self)
+toolTipWindow.orderOut(self)
 ```
 
 or just set the last reference you keep to it to `nil`. 
@@ -301,7 +301,7 @@ fileprivate struct ToolTipControls
 }
 ```
 
-These are `fileprivate` in the same file as my extension on `NSView`.  I also have to have a way to diffentiate between my tracking areas.  They have `userInfo` dictionary that I use for that.  I don't need to store different individualized information in each one, so I just make a global one I reuse.
+These are `fileprivate` in the same file as my extension on `NSView`.  I also have to have a way to differentiate between my tracking areas and any others the view might have.  They have a  `userInfo` dictionary that I use for that.  I don't need to store different individualized information in each one, so I just make a global one I reuse.
 
 ```swift
 fileprivate let bundleID = Bundle.main.bundleIdentifier ?? "com.CustomToolTips"
@@ -321,7 +321,7 @@ fileprivate let dispatchQueue = DispatchQueue(
 #### NSView extension
 My `NSView` extension has a lot in it, the vast majority of which is `private`, including swizzled methods, so I'll break it into pieces
 
-In order to be able to attach custom tool tip as easily as you do for a standard tool tip, I provide a computed variable.  In addition to actually setting the tool tip view, it also checks to see if the `Self` (that is the particular subclass of `NSView`) has already been swizzled, and does that if it hasn't been, and it's adds the mouse tracking area.
+In order to be able to attach custom tool tip as easily as you do for a standard tool tip, I provide a computed property.  In addition to actually setting the tool tip view, it also checks to see if the `Self` (that is the particular subclass of `NSView`) has already been swizzled, and does that if it hasn't been, and it's adds the mouse tracking area.
 
 ```swift
 // -------------------------------------
@@ -407,15 +407,17 @@ Of course, I also have to implement `updateTrackingAreas` and this where we star
     callReplacedMethod(for: #selector(self.updateTrackingAreas))
 }
 ```
-The method isn't called `updateTrackingAreas` because I'm not overriding it in the usual sense. I actually replace the implementation of the current class's `updateTrackingAreas` with the implementation of my `updateTrackingAreas_CustomToolTip`, saving off the original implementation so I can forward to it.  `callReplacedMethod` where I do that forwarding.  If you look into swizzling, you find lots of examples where people call what looks like an infinite recursion, but isn't because *exchange* method implementations.   That works most of the time, but it can subtly mess up the underlying Objective-C messaging because the selector used to calling the old method is no longer the original method.   The way I've done it preserves the selector, which makes it less fragile when something depends on the actual selector remaining the same.  Anyway more on swizzling later.  For now, think of `callReplacedMethod` as similar to calling `super` if I were doing this by subclassing.
+The method isn't called `updateTrackingAreas` because I'm not overriding it in the usual sense. I actually replace the implementation of the current class's `updateTrackingAreas` with the implementation of my `updateTrackingAreas_CustomToolTip`, saving off the original implementation so I can forward to it.  `callReplacedMethod` where I do that forwarding.  If you look into swizzling, you find lots of examples where people call what looks like an infinite recursion, but isn't because they *exchange* method implementations.   That works most of the time, but it can subtly mess up the underlying Objective-C messaging because the selector used to calling the old method is no longer the original selector.   The way I've done it preserves the selector, which makes it less fragile when something depends on the actual selector remaining the same.  Anyway more on swizzling later.  For now, think of `callReplacedMethod` as similar to calling `super` if I were doing this by subclassing.
 
-Then there's scheduling showing the tool tip.  I do this kind of similarly to Stephen, but I wanted the behavior that the tool tip isn't shown until the mouse stops moving for a certain delay (1 second is what I currently use).   As I'm writing this, I just noticed that I do deviate from the standard behavior once the tool tip is displayed.   The standard behavior is to continue to show the tool tip, even if the mouse is moved, but it remains in the tracking area.  So once shown the standard behavior doesn't hide the tool tip until the mouse leaves the tracking area.   I hide it as soon as you move the mouse.  Doing it the standard way is actually simpler, but the way I do it would allow for the tool tip to be shown over large views (for example a NSTextView for a large document) where it has to actually in the same area of the screen that it's owner occupies.   I don't currently position the tool tip that way, but if I do, you'd want any mouse movement to hide the tool tip, otherwise the tool tip would obscure part of what you need to work with.
+Then there's scheduling to show the tool tip.  I do this kind of similarly to Stephen, but I wanted the behavior that the tool tip isn't shown until the mouse stops moving for a certain delay.  I currently use 1 second.  
+
+As I'm writing this, I just noticed that I do deviate from the standard behavior once the tool tip is displayed.   The standard behavior is that once shown, it continues to show the tool tip, even if the mouse is moved, as long as it remains in the tracking area.  So once shown the standard behavior doesn't hide the tool tip until the mouse leaves the tracking area.   I hide it as soon as you move the mouse.  Doing it the standard way is actually simpler, but the way I do it would allow for the tool tip to be shown over large views (for example a `NSTextView` for a large document) where it has to actually be in the same area of the screen that its owner occupies.   I don't currently position the tool tip that way, but if I do, you'd want any mouse movement to hide the tool tip, otherwise the tool tip would obscure part of what the user needs to interact with.
 
 Anyway, here's what that scheduling code looks like
 ```swift
 // -------------------------------------
 /**
- Controls how amy seconds the mouse must be motionless within the tracking
+ Controls how many seconds the mouse must be motionless within the tracking
  area in order to show the tool tip.
  */
 private var customToolTipDelay: TimeInterval { 1 /* seconds */ }
@@ -594,10 +596,10 @@ The only thing that's left before getting to the actual swizzling is handling th
 
 Now for the swizzling.  This was by far the thing that took the longest, and there was much wailing and gnashing of teeth before getting it to work.  Swift isn't designed for swizzling, and it's only possible here because Cocoa classes are all Objective-C when it comes down to it.  Bascially you have to make calls into the Objective-C runtime that normally Swift (or Objective-C) handles for you.
 
-In  the code that follows you'll note that I refer to `Self` and not `NSView`.  That's because for purposes of swizzling, `Self` evaluates to be the dynamic type of the subclass using the `NSView` extension, whereas using `NSView` would be specifically `NSView`.   I don't want to burden every possible `NSView` subclass with custom tool tip support.  Just the ones that I specifically set custom tool tips for.  So even though this is an extension on `NSView`, we're actually swizzling `NSButton` or `NSTextView` or whatever other specific view type the object that's being given a custom tool tip happens to be.
+In  the code that follows you'll note that I refer to `Self` and not `NSView`.  That's because for purposes of swizzling, in the extension `Self` evaluates to be the dynamic type of the subclass using the `NSView` extension, whereas using `NSView` would be specifically `NSView`.   I don't want to burden every possible `NSView` subclass with custom tool tip support, just the ones that I specifically set custom tool tips for.  So even though this is an extension on `NSView`, we're actually swizzling `NSButton` or `NSTextView` or whatever other specific view type the object that's being given a custom tool tip happens to be.
 
 
-Earlier in the `customToolTip` setter, there references to `isSwizzled` and  `initializeCustomToolTips`. 
+Earlier in the `customToolTip` setter, there were references to `isSwizzled` and  `initializeCustomToolTips`. 
 
 Here are their implementations:
 
@@ -653,7 +655,7 @@ Originally I thought I'd do more in `initializeCustomToolTips`, but that turned 
 
 `replaceMethod` is a method I've added to an extension on `NSObject`.  I could have put it in the extension for `NSView` for this particular use, but putting it in `NSObject` will allow me to more easily swizzle non-view types, like maybe `NSText`, if ever have a reason to do that.
 
- `isSwizzled` refers to `Self.implementation(for:)` which is also defined in `NSObject` .  As you'll see, `implementation(for:)` is a method to getting the previous implemention for selector, which is to say, the implemenation before I swizzled it.  If I haven't swizzled it, it will return nil.  So check if `Self` has already been swizzled, I just need to see if any one of the methods I swizzle has previous implementation.  If it does, then we don't need to swizzle again.
+ `isSwizzled` refers to `Self.implementation(for:)` which is also defined in my `NSObject` extension.  As you'll see, `implementation(for:)` is a method for getting the previous implemention for a selector, which is to say, the implemenation before I swizzled it.  If I haven't swizzled it, it will return `nil`.  So check if `Self` has already been swizzled, I just need to see if any one of the methods I swizzle has previous implementation.  If it does, then we don't need to swizzle again.
  
  Before we leave `NSView`, let's look at `callReplacedMethod(for:with:)`
 
@@ -677,9 +679,9 @@ private func callReplacedEventMethod(
 }
 ```
 
-It retrieves the previous implementation, which has type `IMP` (not my choice, that's Objective-C) if it exists, then we need to cal that old implemenation.   `IMP` is essentually a C function pointer for a function that takes a reference to the object being called, so `self` in this case, and the `selector`, as well as whatever parameters.  However, even though I've gotten casting an `IMP` to a C function to work before in Swift, in this context it always crashed, so these methods call some small Objective-C helper functions, `callIMP_...`, to do the actual forwarding.
+It retrieves the previous implementation, which has type `IMP` (not my choice, that's Objective-C).  If it exists, then we need to cal that old implemenation.   `IMP` is essentially a C function pointer for a function that takes a reference to the object being called, so `self` in this case, and the `selector`, as well as whatever parameters.  However, even though I've gotten casting an `IMP` to a C function to work before in Swift, in this context it always crashed, so these methods call some small Objective-C helper functions, `callIMP_...`, to do the actual forwarding.
 
-The swizzled method for `updateTrackingAreas` used a different forwarding call, `callReplacedMethod`, because unlike the `mouse...` methods, it doesn't take a parameter.  It looks similar:
+The swizzled method for `updateTrackingAreas` used a different forwarding call, `callReplacedMethod(for:)`, because unlike the `mouse...` methods, it doesn't take a parameter.  It looks similar:
 
 ```swift
 // -------------------------------------
@@ -698,10 +700,10 @@ private func callReplacedMethod(for selector: Selector)
 }
 ```
 
-#### NSObject Extension
+### NSObject Extension
 OK, so now for the extension on `NSObject`.  That's where I put the code that actually does the swizzling.
 
-In order to be able to forward to the previous implementation, I needed a way to store them.  I solved that the same way I did for `NSView`.  I used `fileprivate` global storage:
+In order to be able to forward to the previous method implementations, I needed a way to store them.  I solved that the same way I did for `NSView`.  I used `fileprivate` global storage:
 
 ```swift
 // -------------------------------------
@@ -749,7 +751,7 @@ static func implementation(for selector: Selector) -> IMP?
 }
 ```
 
-Now let's look at `replaceMethod(_:with:)`.  This is where we start to get into the Object-C runtime calls.  You can tell which those are by the presence of underscores in the names.
+Now let's look at `replaceMethod(_:with:)`.  This is where we start to get into the Objective-C runtime calls.  You can tell which those are by the presence of underscores in the names.
 
 ```swift
 // -------------------------------------
@@ -785,11 +787,11 @@ static func replaceMethod(
     }
 }
 ```
-The idea is to first get a `METHOD` from the class we're swizzling, which is what `class_getInstanceMethod()` returns, which I'm calling from `instanceMethod(for:)`.  This is different from, `IMP`, which is the implementation for that method.  `METHOD` is a `struct` that describes things about the method.  `class_getInstanceMethod()` will return a `METHOD` if the class has the specified selector defined.  So if we called it for a `NSResponder` that isn't an `NSView` requesting the `METHOD` for `#selector(NSView.viewDidMoveToWindow)` it would return `nil`, but would return a `METHOD` for `#selector(NSView.mouseDown(with:))` because `mouseDown(with:)` is defined in `NSResponder`.  For `#selector`, the class or instance preceding the method name only matters for the sake of type checking.  Once the compiler has made a `Selector` from it, it only refers to the method name.
+The idea is to first get a `METHOD` from the class we're swizzling, which is what `class_getInstanceMethod()` returns, which I'm calling from `instanceMethod(for:)`.  This is different from, `IMP`, which is the implementation for that method.  `METHOD` is a `struct` that describes things about the method.  `class_getInstanceMethod()` will return a `METHOD` if the class has the specified selector defined.  So if we were to call it for an `NSResponder` that isn't an `NSView` requesting the `METHOD` for `#selector(NSView.viewDidMoveToWindow)` it would return `nil`, but would return a `METHOD` for `#selector(NSView.mouseDown(with:))` because `mouseDown(with:)` is defined in `NSResponder`.  For `#selector`, the class or instance preceding the method name only matters for the sake of type checking.  Once the compiler has made a `Selector` from it, it only refers to the method name.
 
 In `replaceMethod`, I'm using this to get the implementation for the my customized methods, so that I can replace the existing implementations with them.
 
-`replaceSelectorImplementation` is my own method and we'll get to it shortly, but it does what it says on the tin.  It replaces the implementation for the method named by the selector you pass to it with the implemenation you also pass to it.  It also returns whatever previous implementation there may have been.
+`replaceSelectorImplementation` is my own method and we'll get to it shortly, but it does what it says on the tin.  It replaces the implementation for the method named by the `selector` you pass to it with the implemenation you also pass to it.  It also returns whatever previous implementation there may have been.
 
 If it does return a previous implementation, that's when I store it my global `Dictionary` so that I have a way to forward to it.
 
@@ -839,19 +841,19 @@ private static func replaceSelectorImplementation(
     return oldImp
 }
 ```
-So the first thing I do in `replaceSelectorImplementation` is make sure we have a superclass.  If we don't that means we're trying to swizzle `NSObject` itself.   Technically you can do that, but it just seems like a bad idea, and any behavior I can imagine I'd want to swizzle is in a subclass of it.
+So the first thing I do in `replaceSelectorImplementation` is make sure we have a superclass.  If we don't, that means we're trying to swizzle `NSObject` itself.   Technically you can do that, but it just seems like a bad idea, and any behavior I can imagine I'd want to swizzle is in a subclass of it.
 
 Then I get the `METHOD` for the `Selector` I'm replacing.  `method_getTypeEncoding()` gets a C string whose characters describe the parameter types and return type for the method.  We don't need to do anything with it other than pass it on to other Obj-C runtime functions.
 
-The thinking behind `addMethodThatCallsSuper`, which is another of my own Obj-C runtime wrappers, is that under normal circumstances, if you were to call an Obj-C method that the object's class doesn't define, the runtime would crawl up the inheritance hierarchy, which has the effect of calling `super`.  But we're about to mess with the natural order of things.  When we "replace" the method in such a case, it actually adds the method, but then we will have screwed things up, because we'll get `nil` for the old implementation, since there wasn't one, so we won't have anyhing to chain to, which means the call chain will end our replacement implementation.  What should happen is after our method is called, it should continue to crawl up the inheritance hierarchy, or at least behave as if it did.  So if there is no current implementation, what we want to do is add one that expliclty calls `super`,  then replace that one.  That way we have something to chain to that continues the crawl up the hierarchy.  That's what `addMethodThatCallsSuper` does.  
+The thinking behind `addMethodThatCallsSuper`, which is another of my own Obj-C runtime wrappers, is that under normal circumstances, if you were to call an Obj-C method that the object's class doesn't define, the runtime would crawl up the inheritance hierarchy, which has the effect of calling `super`.  But we're about to mess with the natural order of things.  When we "replace" the method in such a case, it actually adds the method, but then we will have screwed things up, because we'll get `nil` for the old implementation, since there wasn't one, so we won't have anyhing to chain to, which means the call chain will end at our replacement implementation.  What should happen is after our method is called, it should continue to crawl up the inheritance hierarchy, or at least behave as if it did.  So if there is no current implementation, what we want to do is add one that expliclty calls `super`,  then replace that one.  That way we have something to chain to that continues the crawl up the hierarchy.  That's what `addMethodThatCallsSuper` does.  
 
 As for the implementation of `addMethodThatCallsSuper`, it's one of the things I had to do in Objective-C.
 
 There are just some things I couldn't get to work in Swift, so I had to delegate them to Objective-C functions, like those we saw earlier for forwarding calls.   To add a method that calls  `super`  I have to use `objc_msgSendSuper` in it's implementation, but it's completely unavailable in Swift.
 
-But that wasn't the only problem.  I also have to make a `objc_super`, which is simple 2-member struct, but one of those member fields is an `Unmanaged<AnyObject>`.  The *compiler crashes* with `Abort 6` when trying to set it.   That should never ever happen.  If we do something illegal, the compiler should emit an error, but it should *not* crash.  The only output I had to work with to figure out what was happening was an uncaught C++ exception stack trace, which would be totally useful if I were debugging the Swift compiler's C++ code, but much less useful for fixing the Swift code I'm using the compiler for.  I did manage to work out which line of code the compiler was choking on, but after 6 hours of trying to find some formulation to express it in a way that wouldn't cause the compiler to die on me, I finally said, "Screw it.  I'll do it in Objective-C."
+But that wasn't the only problem.  I also have to make a `objc_super`, which is simple 2-member struct, but one of those member fields is an `Unmanaged<AnyObject>`.  The *compiler crashes* with `Abort 6` when trying to set it.   That should never ever happen.  If we do something illegal, the compiler should emit an error, but it should *not* crash.  The only output I had to work with to figure out what was happening was an uncaught C++ exception stack trace, which would be totally useful if I were debugging the Swift compiler's C++ code.  It was much less useful for fixing the Swift code I'm using the compiler for.  I did manage to work out which line of code the compiler was choking on, but after 6 hours of trying to find some formulation to express it in a way that wouldn't cause the compiler to die on me, I finally said, "Screw it.  I'll do it in Objective-C."
 
-Using even just one line of C or Objective-C means you need bridging header, and make sure you `#import` the Objective-C `.h` file for your `.m` file in it.
+Using even just one line of C or Objective-C means you need a bridging header, and make sure you `#import` the Objective-C `.h` file for your `.m` file in it.
 
 My bridging header looked like this:
 
@@ -950,7 +952,8 @@ And `swizzleHelper.m`:
  The same is true for forwardToSuperFromSwizzle, but it had the additional
  problem that when making the objc_super structure, the Swift *compiler* would
  crash trying to assign its `receiver` member field, which translates to Swift
- as an Unmanaged<Any!>.  That seems to have been a problem in a @_cdecl context.
+ as an Unmanaged<AnyObject>.  That seems to have been a problem in a @_cdecl
+ context.
 
  In addition the call to objc_msgSendSuper in forwardToSuperFromSwizzle can't
  be done at all in Swift, because it's simply not available... at all.  The
