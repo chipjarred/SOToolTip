@@ -961,6 +961,11 @@ And `swizzleHelper.m`:
 #import "swizzleHelper.h"
 #import <objc/message.h>
 
+// objc_msgSendSuper2 is in runtime but not in objc/message.h
+OBJC_EXPORT id objc_msgSendSuper2(struct objc_super *super, SEL op, ...);
+
+#define USE_MSGSENDSUPER2 1
+
 /*
  All of the callIMP_... functions are implemented in Objective-C instead of
  Swift because I could not get Swift to properly cast them `IMP` to the correct
@@ -1014,27 +1019,29 @@ void callIMP_withPointer(
 }
 
 // -------------------------------------
-id forwardToSuperFromSwizzle(
-   _Nonnull __unsafe_unretained id receiver,
-    SEL selector,
-    va_list args)
+BOOL addMethodThatCallsSuper(
+    Class  _Nonnull __unsafe_unretained cls,
+    SEL _Nonnull selector,
+    const char* _Nullable types)
 {
     typedef id (*funcPtr)(struct objc_super *, SEL, va_list);
-    struct objc_super superInfo = {
-        .receiver = receiver,
-        .super_class = class_getSuperclass(object_getClass(receiver))
-    };
-
-    return ((funcPtr)objc_msgSendSuper)(&superInfo, selector, args);
-}
-
-// -------------------------------------
-BOOL addMethodThatCallsSuper(
-     Class  _Nonnull __unsafe_unretained cls,
-     SEL _Nonnull selector,
-     const char* _Nullable types)
-{
-    return class_addMethod(cls, selector, (IMP)forwardToSuperFromSwizzle, types);
+    return class_addMethod(
+        cls,
+        selector,
+        imp_implementationWithBlock(
+            ^(__unsafe_unretained id self, va_list argp)
+            {
+#if USE_MSGSENDSUPER2
+                struct objc_super super = {self, cls};
+                return ((funcPtr)objc_msgSendSuper2)(&super, selector, argp);
+#else
+                struct objc_super super = {self, class_getSuperclass(cls)};
+                return ((funcPtr)objc_msgSendSuper)(&super, selector, argp);
+#endif
+            }
+        ),
+        types
+    );
 }
 ```
 
