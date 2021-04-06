@@ -4,7 +4,7 @@ This repo is basically my answer to [this stackoverflow question](https://stacko
 
 ## My Original Stack Overflow Answer
 
-Stephan's answer prompted me to do my own implementation of tool tips.   My solution produces tool tips that look like the standard tool tips, except you can put any view you like inside them, so not just styled text, but images... you could even use a WebKit view you wanted to. 
+Stephan's answer prompted me to do my own implementation of tool tips.   My solution produces tool tips that look like the standard tool tips, except you can put any view you like inside them, so not just styled text, but images... you could even use a WebKit view, if you wanted to. 
 
 [![Screenshot][1]][1]
 
