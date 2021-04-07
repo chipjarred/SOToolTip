@@ -8,7 +8,11 @@ class ViewController: NSViewController
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        findPushButton(in: view)?.customToolTip = makeCustomToolTip()
+        if let button = findPushButton(in: view)
+        {
+            button.customToolTip = makeCustomToolTip()
+            button.customToolTipBackgroundColor = #colorLiteral(red: 0.1921568662, green: 0.007843137719, blue: 0.09019608051, alpha: 1)
+        }
     }
     
     func findPushButton(in view: NSView) -> NSButton?
@@ -26,8 +30,15 @@ class ViewController: NSViewController
     
     func makeCustomToolTip() -> NSView
     {
-        let titleText = "Custom Tool Tip"
-        let bodyText = "\n\tThis demonstrates that it's possible,\n\tand if I can do it, so you can you!"
+        let titleText = "Custom tool tips are cool!"
+        let bodyText =
+            """
+            
+            \tYou can create rich tool tips with any content you like,
+            \tand attach them to views with one line of code as easily
+            \tas you can attach the old boring plain text standard
+            \ttool tips.
+            """
         
         let titleFont = NSFont.systemFont(ofSize: 14, weight: .bold)
         let title = NSAttributedString(
